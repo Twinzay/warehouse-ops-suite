@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Warehouse Ops Suite</title>
+  <style>
+    body{margin:0;font-family:system-ui;background:#07090c;color:#e9eef7}
+    .bar{display:flex;gap:10px;padding:12px;border-bottom:1px solid rgba(255,255,255,.08)}
+    .btn{padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(10,14,20,.55);color:#e9eef7;cursor:pointer}
+    .btn.active{border-color:rgba(200,162,74,.6)}
+    iframe{width:100%;height:calc(100vh - 58px);border:0}
+  </style>
+</head>
+<body>
+  <div class="bar">
+    <button class="btn active" id="tBay">BayScan</button>
+    <button class="btn" id="tLoc">LocateMe</button>
+  </div>
+
+  <iframe id="frame" src="bayscan.html"></iframe>
+
+  <script>
+    const frame = document.getElementById("frame");
+    const tBay = document.getElementById("tBay");
+    const tLoc = document.getElementById("tLoc");
+
+    function setTab(which){
+      tBay.classList.toggle("active", which==="bay");
+      tLoc.classList.toggle("active", which==="loc");
+      frame.src = which==="bay" ? "bayscan.html" : "locateme.html";
+    }
+
+    tBay.onclick = ()=>setTab("bay");
+    tLoc.onclick = ()=>setTab("loc");
+  </script>
+</body>
+</html>
